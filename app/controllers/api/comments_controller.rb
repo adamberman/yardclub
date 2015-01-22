@@ -25,9 +25,11 @@ module Api
 			# when author == current_user. for examples of auth that i've
 			# built in the past, check out the user model and user/session/application
 			# controllers in my TVBNB repo: github.com/adamberman/tvbnb
-			
+
 			@comment = Comment.find(params[:id])
 			@comment.destroy
+
+			# dependent: :destroy option in model destroys all nested comments as well
 			render json: {}
 		end
 
