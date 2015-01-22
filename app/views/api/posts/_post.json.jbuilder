@@ -4,9 +4,10 @@ json.extract!(
 	:title,
 	:content
 )
-post.author do |author|
-	author.name
-	author.city
+json.author do
+	json.partial! 'api/users/user', user: post.author
 end
 
-json.array! post.images, partial: 'image', as: :image
+json.images do
+	json.array! post.images, partial: 'api/images/image', as: :image
+end
